@@ -61,6 +61,11 @@
 /* Toptal's "Top 3% talent" badge, kept in Toptal's own style (their markup, classes prefixed). */
 .tt-badge { margin-top: var(--space-6); }
 
+/* Certification rows: the Credly badge beside the title (badges keep their own colors). */
+.cert { display: flex; align-items: center; gap: var(--space-4); }
+.cert-badge { flex: none; width: 64px; height: 64px; object-fit: contain; }
+@media (min-width: 1024px) { .rows-compact .row:has(.cert) { align-items: center; } }
+
 /* ── Facts: four quiet numbers in a ruled strip. ── */
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: var(--color-ink); border-bottom: var(--rule); }
 @media (min-width: 1024px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
@@ -187,7 +192,7 @@
   .row { grid-template-columns: 30mm 1fr 1.6fr; gap: 0 5mm; padding: 2.5mm 0; break-inside: avoid; }
   .row h3 { font-size: 12pt; }
   .detail p, .detail li { font-size: 9.5pt; }
-  .tags, .rows-compact .detail { display: none; }
+  .tags, .rows-compact .detail, .cert-badge { display: none; }
   .rows-compact .row { grid-template-columns: 30mm 1fr; padding: 1.5mm 0; }
   .rows-compact .row h3 { font-size: 11pt; }
   .rows-compact .org { display: inline; margin: 0 0 0 3mm; }
