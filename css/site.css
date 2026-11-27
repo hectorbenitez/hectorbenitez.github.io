@@ -170,12 +170,37 @@
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
+/* ── "See more": long lists collapse behind a native <details>, labelled for both states. ── */
+.more > summary { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: var(--space-3) 0; list-style: none; cursor: pointer; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-text); }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::before { content: "+"; font-size: 18px; line-height: 1; font-weight: 900; }
+.more[open] > summary::before { content: "\2212"; }
+.more > summary:hover { color: var(--color-ink); }
+.more > summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.more .more-open, .more[open] .more-closed { display: none; }
+.more[open] .more-open { display: inline; }
+/* Section lists: the visible part ends on a hairline; the closed toggle carries the closing rule. */
+.rows:has(+ .more) > .row:last-child { border-bottom: var(--rule-hairline); }
+.block > .more:not(.more-inline) { border-bottom: var(--rule); }
+.block > .more[open]:not(.more-inline) { border-bottom: 0; }
+.block > .more > .work { margin-top: var(--space-2); }
+.more-inline { margin-top: var(--space-2); }
+.more-inline > summary { min-height: 0; padding: var(--space-1) 0; }
+.more-inline > ul { margin-top: var(--space-2); }
+/* "Alongside the full-time roles" — separates part-time consulting from the career line. */
+.subhead { margin-top: var(--space-10); padding-bottom: var(--space-3); font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .work > .project-wide { grid-column: span 2; }
+  .more .work > .project:last-child:nth-child(odd) { grid-column: span 2; }
+}
+
 /* ── Print: a two-page résumé. Light colors, no navigation, no hover fields, links spelled out. ── */
 @media print {
   @page { margin: 14mm 14mm; }
   :root { --color-ground: #fff; --color-surface: #fff; --color-ink: #201e1d; --color-muted: #444141; --color-divider: rgba(32, 30, 29, 0.4); --color-accent-text: var(--color-accent-deep); }
   html, body { background: #fff; color: #201e1d; font-size: 10.5pt; }
-  .skip, .bar, .index, .actions, .footer, .no-print { display: none !important; }
+  .skip, .bar, .index, .actions, .footer, .no-print, .more > summary { display: none !important; }
+  .block > .more { border: 0; }
   .pad { padding-left: 0; padding-right: 0; }
   .hero { background: none; color: var(--color-ink); padding: 0 0 6mm; gap: 3mm; }
   .wordmark { font-size: 44pt; }
