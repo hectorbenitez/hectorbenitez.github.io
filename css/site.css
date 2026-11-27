@@ -1,0 +1,197 @@
+/* hectorbenitez.com — a one-page résumé on top of the Modernist tokens and components (copied
+   unchanged from the design system). Values come from tokens; nothing here adds a color, radius
+   or font. Accent: Rojo Feria (the system default). It prints as a clean résumé (see the end). */
+
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/archivo-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/archivo-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/archivo-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 800; font-display: swap; src: url("../fonts/archivo-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 900; font-display: swap; src: url("../fonts/archivo-latin-900-normal.woff2") format("woff2"); }
+
+:where(h1, h2, h3, p, ul, ol, dl, dd) { margin: 0; }
+:where(ul, ol) { padding: 0; list-style: none; }
+:where(p) { text-wrap: pretty; }
+:where(h1, h2, h3) { text-wrap: balance; }
+
+/* Side padding: 16 / 32 / 48 (layout.md). */
+.pad { padding-left: var(--space-4); padding-right: var(--space-4); }
+@media (min-width: 768px) { .pad { padding-left: var(--space-8); padding-right: var(--space-8); } }
+@media (min-width: 1024px) { .pad { padding-left: var(--space-12); padding-right: var(--space-12); } }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: var(--space-4); top: var(--space-2); z-index: 10; }
+
+/* ── Top bar: name + language. ── */
+.bar { display: flex; align-items: stretch; justify-content: space-between; gap: var(--space-4); min-height: 56px; border-bottom: var(--rule); }
+.bar-brand { display: flex; align-items: center; gap: var(--space-3); color: var(--color-ink); text-decoration: none; font-weight: 900; font-size: 18px; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; }
+.bar-mark { width: 24px; height: 24px; flex: none; }
+.bar-lang { display: flex; align-items: center; min-height: 44px; color: var(--color-ink); }
+
+/* ── Hero: the one accent field. ── */
+.hero { background: var(--color-accent); color: var(--color-on-accent); padding-top: var(--space-12); padding-bottom: var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+.hero .kicker { color: inherit; font-size: clamp(12px, 1.4vw, 16px); }
+.wordmark { font-size: clamp(56px, 15vw, 240px); line-height: 0.82; font-weight: 900; letter-spacing: -0.045em; text-transform: uppercase; margin-left: -0.04em; }
+.hero-rule { height: 0; border: 0; border-top: 6px solid currentColor; margin: 0; color: inherit; }
+.hero-body { display: grid; gap: var(--space-6); align-items: end; }
+@media (min-width: 1024px) { .hero-body { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+.statement { font-size: clamp(26px, 3.2vw, 46px); line-height: 1.02; font-weight: 900; letter-spacing: -0.02em; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+@media (min-width: 1024px) { .hero .actions { justify-content: flex-end; } }
+.btn-light { background: var(--color-on-accent); color: var(--color-accent-deep); }
+.btn-light:hover { background: var(--color-accent-tint); color: var(--color-accent-deepest); }
+.btn-line { background: transparent; color: inherit; box-shadow: inset 0 0 0 2px currentColor; }
+.btn-line:hover { background: var(--color-accent-press); }
+
+/* ── Facts: four numbers in a ruled strip. ── */
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: var(--color-ink); border-bottom: var(--rule); }
+@media (min-width: 1024px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.fact { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6) var(--space-4); background: var(--color-ground); }
+@media (min-width: 768px) { .fact { padding: var(--space-8); } }
+.fact-value { font-size: clamp(40px, 5vw, 72px); line-height: 0.9; font-weight: 900; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.fact-label { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+
+/* ── Index strip: section links, six equal cells split by 2px rules. ── */
+.index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: var(--color-ink); border-bottom: var(--rule); }
+@media (min-width: 768px) { .index { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .index { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.index a { display: flex; align-items: baseline; gap: var(--space-2); min-height: 64px; padding: var(--space-5) var(--space-3); background: var(--color-ground); color: var(--color-ink); text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; transition: background-color var(--dur-fast) var(--ease); min-width: 0; }
+@media (min-width: 768px) { .index a { gap: var(--space-3); padding: var(--space-5) var(--space-8); font-size: 13px; letter-spacing: 0.1em; } }
+.index a:hover { background: var(--color-accent-tint); }
+.index .num { font-weight: 900; color: var(--color-accent-text); font-variant-numeric: tabular-nums; }
+
+/* ── Section head: number + huge title on the left, short intro on the right. ── */
+.block { border-bottom: var(--rule); padding-top: var(--space-16); padding-bottom: var(--space-16); }
+/* Stacked so the longest title (CERTIFICATIONS / CERTIFICACIONES) stays on one line at every width. */
+.head { display: grid; gap: var(--space-5); margin-bottom: var(--space-10); }
+.head-title { display: flex; align-items: flex-start; gap: var(--space-4); min-width: 0; }
+.head-num { font-size: 14px; font-weight: 900; letter-spacing: 0.08em; color: var(--color-accent-text); padding-top: 0.6em; font-variant-numeric: tabular-nums; }
+.head h2 { font-size: clamp(30px, 7vw, 116px); line-height: 0.88; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+.head p { font-size: 17px; color: var(--color-muted); max-width: 60ch; }
+
+/* ── Timetable rows: when | what | detail | tags. Used for experience, talks, certifications. ── */
+.rows { border-top: var(--rule); }
+.row { display: grid; gap: var(--space-2) var(--space-5); padding: var(--space-6) 0; border-bottom: var(--rule-hairline); grid-template-columns: minmax(0, 1fr); }
+.row:last-child { border-bottom: var(--rule); }
+@media (min-width: 1024px) { .row { grid-template-columns: minmax(0, 2fr) minmax(0, 4fr) minmax(0, 6fr); gap: var(--space-8); align-items: start; padding: var(--space-8) 0; } }
+.when { font-size: 14px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent-text); font-variant-numeric: tabular-nums; padding-top: 0.35em; }
+.row h3 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.04; font-weight: 900; letter-spacing: -0.02em; }
+.org { display: block; margin-top: var(--space-2); font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.detail { display: flex; flex-direction: column; gap: var(--space-3); }
+.detail p, .detail li { color: var(--color-muted); font-size: 16px; }
+.detail ul { display: flex; flex-direction: column; gap: var(--space-2); }
+.detail li { padding-left: var(--space-5); position: relative; }
+.detail li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 2px; background: var(--color-accent); }
+.detail a, .row h3 a { color: var(--color-accent-text); }
+.tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* Compact rows (talks, certifications): one line per entry on desktop. */
+.rows-compact .row { padding: var(--space-5) 0; }
+@media (min-width: 1024px) { .rows-compact .row { padding: var(--space-6) 0; align-items: baseline; } }
+.rows-compact .row h3 { font-size: clamp(20px, 2vw, 24px); }
+
+/* ── Work grid: ruled cards for open source and teaching. ── */
+.work { display: grid; gap: 2px; background: var(--color-ink); border: var(--rule); grid-template-columns: 1fr; }
+@media (min-width: 768px) { .work { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .work { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.project { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); min-height: 260px; background: var(--color-ground); min-width: 0; }
+@media (min-width: 1024px) { .project { padding: var(--space-8); } }
+.project-top { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.project-meta { font-size: 13px; font-weight: 900; color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.project h3 { font-size: clamp(24px, 2.2vw, 30px); line-height: 1; font-weight: 900; letter-spacing: -0.02em; margin-top: var(--space-5); overflow-wrap: anywhere; }
+.project p { color: var(--color-muted); flex: 1; }
+.project-foot { padding-top: var(--space-3); border-top: var(--rule-hairline); font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.project-foot a { color: var(--color-accent-text); }
+/* Eight cards fill 1 and 2 columns; at 3 columns the last spans two so 3 + 3 + 1 + 2 fill. */
+@media (min-width: 1024px) { .work > .project-wide { grid-column: span 2; } }
+.project-wide { background: var(--color-accent-tint); }
+.project-wide p { color: var(--color-ink); }
+
+/* ── Skills: four ruled columns. ── */
+.skills { display: grid; gap: 2px; background: var(--color-ink); border: var(--rule); grid-template-columns: 1fr; }
+@media (min-width: 768px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .skills { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.skill { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); background: var(--color-ground); }
+@media (min-width: 1024px) { .skill { padding: var(--space-8); } }
+.skill h3 { font-size: 18px; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; }
+.skill ul { display: flex; flex-direction: column; }
+.skill li { padding: var(--space-2) 0; border-bottom: var(--rule-hairline); font-weight: 600; }
+.skill li:last-child { border-bottom: 0; }
+
+/* Education + languages: two cells under the skills. */
+.pair { display: grid; gap: 2px; background: var(--color-ink); border: var(--rule); border-top: 0; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pair > div { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-surface); }
+@media (min-width: 1024px) { .pair > div { padding: var(--space-8); } }
+.pair strong { font-size: 20px; font-weight: 900; letter-spacing: -0.01em; }
+.pair p { color: var(--color-muted); }
+
+/* ── Contact: the ink poster (second voice). ── */
+.contact { background: var(--color-inverse); color: var(--color-on-inverse); padding-top: var(--space-16); padding-bottom: var(--space-16); display: flex; flex-direction: column; gap: var(--space-6); }
+.contact .kicker { color: var(--color-accent-bright); }
+.contact h2 { font-size: clamp(40px, 9vw, 132px); line-height: 0.88; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+.contact-rule { height: 0; border: 0; border-top: 6px solid currentColor; margin: 0; color: inherit; }
+.contact p { font-size: clamp(17px, 1.8vw, 22px); font-weight: 600; max-width: 48ch; }
+.links { display: grid; gap: 2px; background: currentColor; border: 2px solid currentColor; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .links { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.links a { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-inverse); color: var(--color-on-inverse); text-decoration: none; transition: background-color var(--dur-fast) var(--ease); }
+.links a:hover { background: var(--color-accent); color: var(--color-on-accent); }
+.links .label { color: inherit; opacity: 0.8; }
+.links strong { font-size: clamp(22px, 2.4vw, 30px); font-weight: 900; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.contact :focus-visible, .hero :focus-visible { outline-color: currentColor; }
+
+/* ── Footer ── */
+.footer { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); align-items: center; justify-content: space-between; padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.footer nav { display: flex; flex-wrap: wrap; gap: 0 var(--space-6); }
+.footer a { color: var(--color-ink); min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Ink mode flips the inverse field to light: accent text on it must be the deep step. */
+[data-mode="ink"] .contact .kicker { color: var(--color-accent-deep); }
+@media (prefers-color-scheme: dark) { [data-mode="auto"] .contact .kicker { color: var(--color-accent-deep); } }
+
+/* 404 */
+.poster-page { min-height: 60vh; }
+.poster-rule { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ── Print: a two-page résumé. Light colors, no navigation, no hover fields, links spelled out. ── */
+@media print {
+  @page { margin: 14mm 14mm; }
+  :root { --color-ground: #fff; --color-surface: #fff; --color-ink: #201e1d; --color-muted: #444141; --color-divider: rgba(32, 30, 29, 0.4); --color-accent-text: var(--color-accent-deep); }
+  html, body { background: #fff; color: #201e1d; font-size: 10.5pt; }
+  .skip, .bar, .index, .actions, .footer, .no-print { display: none !important; }
+  .pad { padding-left: 0; padding-right: 0; }
+  .hero { background: none; color: var(--color-ink); padding: 0 0 6mm; gap: 3mm; }
+  .wordmark { font-size: 44pt; }
+  .statement { font-size: 15pt; }
+  .hero .kicker { color: var(--color-accent-deep); }
+  .facts { background: none; border: var(--rule); border-left: 0; border-right: 0; gap: 0; grid-template-columns: repeat(4, 1fr); }
+  .fact { padding: 3mm 0; }
+  .fact-value { font-size: 22pt; }
+  .block { padding: 7mm 0 0; border-bottom: 0; }
+  .head { margin-bottom: 3mm; grid-template-columns: 1fr; }
+  .head h2 { font-size: 22pt; }
+  .head p { display: none; }
+  .row { grid-template-columns: 30mm 1fr 1.6fr; gap: 0 5mm; padding: 2.5mm 0; break-inside: avoid; }
+  .row h3 { font-size: 12pt; }
+  .detail p, .detail li { font-size: 9.5pt; }
+  .tags, .rows-compact .detail { display: none; }
+  .rows-compact .row { grid-template-columns: 30mm 1fr; padding: 1.5mm 0; }
+  .rows-compact .row h3 { font-size: 11pt; }
+  .rows-compact .org { display: inline; margin: 0 0 0 3mm; }
+  .rows-compact .row > div:not(.detail) { display: flex; flex-wrap: wrap; align-items: baseline; }
+  .work, .skills, .pair, .links { background: none; border: 0; gap: 0; grid-template-columns: repeat(2, 1fr); }
+  .project, .skill, .pair > div { min-height: 0; padding: 2.5mm 4mm 2.5mm 0; background: none; break-inside: avoid; }
+  .work { grid-template-columns: repeat(3, 1fr); }
+  .project p { font-size: 9pt; }
+  .project h3 { font-size: 12pt; margin-top: 1mm; }
+  .project-foot { border: 0; padding: 0; }
+  .skills { grid-template-columns: repeat(4, 1fr); }
+  .skill li { padding: 0.6mm 0; border: 0; font-size: 9.5pt; }
+  .contact { background: none; color: var(--color-ink); padding: 7mm 0 0; gap: 3mm; break-inside: avoid; }
+  .contact h2 { font-size: 22pt; }
+  .contact .kicker, .contact-rule, .contact p { display: none; }
+  .links a { background: none; color: var(--color-ink); padding: 1mm 0; }
+  .links strong { font-size: 11pt; }
+  a { text-decoration: none; }
+}

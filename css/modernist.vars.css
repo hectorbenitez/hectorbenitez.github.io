@@ -1,0 +1,111 @@
+/* Modernist — token variables. Generated from tokens/tokens.json. Edit the JSON first. */
+/* Font: load Archivo via <link> (see references/typography.md) or the @import in modernist.css / tailwind.css. */
+
+:root {
+  /* roles — light */
+  --color-ground: #f3f2f2;
+  --color-bg: var(--color-ground);
+  --color-surface: #eae9e9;
+  --color-faint: #f8f4f4;
+  --color-paper: #ffffff;
+  --color-ink: #201e1d;
+  --color-text: var(--color-ink);
+  --color-muted: #605d5d;
+  --color-subtle: #9b9797;
+  --color-divider: rgba(32, 30, 29, 0.40);
+  --color-on-accent: #ffffff;
+  --color-inverse: #201e1d;      /* the "second voice" field */
+  --color-on-inverse: #ffffff;
+
+  /* accent family — theme "rojo" (default) */
+  --color-accent-tint: #ffe0d9;
+  --color-accent: #ec3013;
+  --color-accent-press: #dd2b0f;
+  --color-accent-deep: #ae1800;
+  --color-accent-deepest: #831a09;
+  --color-accent-bright: #ff9783;
+  --color-accent-text: var(--color-accent-deep); /* accent text on the current ground */
+
+  /* ramps (rare use: charts, heatmaps) */
+  --color-neutral-100: #f8f4f4; --color-neutral-200: #eae7e7; --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6; --color-neutral-500: #9b9797; --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d; --color-neutral-800: #444141; --color-neutral-900: #2d2b2b;
+
+  /* type */
+  --font-sans: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  /* space */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px;
+  --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-18: 72px;
+
+  /* rules */
+  --rule: 2px solid var(--color-ink);
+  --rule-hairline: 2px solid var(--color-divider);
+  --rule-thin: 1px solid var(--color-divider);
+  --rule-heavy: 3px solid var(--color-ink);
+
+  /* radius — always zero */
+  --radius-none: 0px; --radius-sm: 0px; --radius-md: 0px; --radius-lg: 0px;
+
+  /* elevation */
+  --shadow-sm: 0 1px 2px rgba(45, 43, 43, 0.14);
+  --shadow-md: 0 3px 10px rgba(45, 43, 43, 0.16);
+  --shadow-lg: 0 12px 32px rgba(45, 43, 43, 0.22);
+
+  /* motion */
+  --dur-fast: 120ms; --dur-base: 200ms; --dur-flip: 600ms; --dur-flash: 1200ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* z */
+  --z-sticky: 10; --z-dropdown: 20; --z-overlay: 30; --z-dialog: 40; --z-toast: 50; --z-flash: 60;
+
+  color-scheme: light;
+}
+
+/* ── themes: only the accent family moves ─────────────────────────────── */
+[data-theme="rosa"]    { --color-accent-tint:#ffd9e7; --color-accent:#d81b74; --color-accent-press:#bd155f; --color-accent-deep:#99094c; --color-accent-deepest:#750f3e; --color-accent-bright:#e87bae; }
+[data-theme="cobalto"] { --color-accent-tint:#dde3ff; --color-accent:#1f4fd8; --color-accent-press:#1a44bd; --color-accent-deep:#123a9e; --color-accent-deepest:#163277; --color-accent-bright:#7d99e8; }
+[data-theme="jade"]    { --color-accent-tint:#cfeade; --color-accent:#0b7a4b; --color-accent-press:#076840; --color-accent-deep:#045433; --color-accent-deepest:#0c442c; --color-accent-bright:#71b297; }
+[data-theme="mostaza"] { --color-accent-tint:#f7e6c2; --color-accent:#b06f00; --color-accent-press:#975f00; --color-accent-deep:#7a4c00; --color-accent-deepest:#5f3e09; --color-accent-bright:#d1ab6b; }
+[data-theme="morado"]  { --color-accent-tint:#e9dcff; --color-accent:#6d28c9; --color-accent-press:#5d20ad; --color-accent-deep:#49188a; --color-accent-deepest:#3d1a69; --color-accent-bright:#aa82e0; }
+
+/* ── "Ink" dark mode: opt-in with data-mode="ink", or data-mode="auto" to follow the OS ── */
+[data-mode="ink"] {
+  --color-ground: #201e1d; --color-surface: #2d2b2b; --color-faint: #262423; --color-paper: #161514;
+  --color-ink: #f3f2f2; --color-muted: #bab6b6; --color-subtle: #7d7979;
+  --color-divider: rgba(243, 242, 242, 0.40);
+  --color-inverse: #f3f2f2; --color-on-inverse: #201e1d;
+  --color-accent-text: var(--color-accent-bright);
+  --color-accent-tint: #53221a; /* tintInk (rojo): the light tint would sit under light text */
+  --shadow-sm: 0 0 0 1px rgba(243,242,242,.12), 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 0 0 1px rgba(243,242,242,.12), 0 3px 10px rgba(0,0,0,.5);
+  --shadow-lg: 0 0 0 1px rgba(243,242,242,.12), 0 12px 32px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+/* Ink tint per theme (tokens.json → tintInk). Theme and mode can sit on the same element or nest. */
+[data-mode="ink"][data-theme="rosa"], [data-mode="ink"] [data-theme="rosa"] { --color-accent-tint: #4e1d33; }
+[data-mode="ink"][data-theme="cobalto"], [data-mode="ink"] [data-theme="cobalto"] { --color-accent-tint: #202a4c; }
+[data-mode="ink"][data-theme="jade"], [data-mode="ink"] [data-theme="jade"] { --color-accent-tint: #1b3528; }
+[data-mode="ink"][data-theme="mostaza"], [data-mode="ink"] [data-theme="mostaza"] { --color-accent-tint: #443216; }
+[data-mode="ink"][data-theme="morado"], [data-mode="ink"] [data-theme="morado"] { --color-accent-tint: #332048; }
+@media (prefers-color-scheme: dark) {
+  [data-mode="auto"] {
+    --color-ground: #201e1d; --color-surface: #2d2b2b; --color-faint: #262423; --color-paper: #161514;
+    --color-ink: #f3f2f2; --color-muted: #bab6b6; --color-subtle: #7d7979;
+    --color-divider: rgba(243, 242, 242, 0.40);
+    --color-inverse: #f3f2f2; --color-on-inverse: #201e1d;
+    --color-accent-text: var(--color-accent-bright);
+    --color-accent-tint: #53221a;
+    --shadow-sm: 0 0 0 1px rgba(243,242,242,.12), 0 1px 2px rgba(0,0,0,.4);
+    --shadow-md: 0 0 0 1px rgba(243,242,242,.12), 0 3px 10px rgba(0,0,0,.5);
+    --shadow-lg: 0 0 0 1px rgba(243,242,242,.12), 0 12px 32px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+  [data-mode="auto"][data-theme="rosa"], [data-mode="auto"] [data-theme="rosa"] { --color-accent-tint: #4e1d33; }
+  [data-mode="auto"][data-theme="cobalto"], [data-mode="auto"] [data-theme="cobalto"] { --color-accent-tint: #202a4c; }
+  [data-mode="auto"][data-theme="jade"], [data-mode="auto"] [data-theme="jade"] { --color-accent-tint: #1b3528; }
+  [data-mode="auto"][data-theme="mostaza"], [data-mode="auto"] [data-theme="mostaza"] { --color-accent-tint: #443216; }
+  [data-mode="auto"][data-theme="morado"], [data-mode="auto"] [data-theme="morado"] { --color-accent-tint: #332048; }
+}
