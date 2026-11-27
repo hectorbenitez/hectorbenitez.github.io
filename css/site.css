@@ -58,6 +58,9 @@
 
 .url { font-weight: 600; color: var(--color-muted); overflow-wrap: anywhere; }
 
+/* Toptal's "Top 3% talent" badge, kept in Toptal's own style (their markup, classes prefixed). */
+.tt-badge { margin-top: var(--space-6); }
+
 /* ── Facts: four quiet numbers in a ruled strip. ── */
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: var(--color-ink); border-bottom: var(--rule); }
 @media (min-width: 1024px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
